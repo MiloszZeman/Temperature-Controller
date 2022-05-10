@@ -1,0 +1,934 @@
+
+Termostat.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         00000390  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000008  00800060  00000390  00000424  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          00000001  00800068  00800068  0000042c  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  0000042c  2**0
+                  CONTENTS, READONLY
+  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  0000045c  2**2
+                  CONTENTS, READONLY
+  5 .debug_aranges 000000c8  00000000  00000000  00000498  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   0000121d  00000000  00000000  00000560  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 00000a6e  00000000  00000000  0000177d  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   00000b49  00000000  00000000  000021eb  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  000001a0  00000000  00000000  00002d34  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    000004fd  00000000  00000000  00002ed4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    00000a72  00000000  00000000  000033d1  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_ranges 000000b8  00000000  00000000  00003e43  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	12 c0       	rjmp	.+36     	; 0x26 <__ctors_end>
+   2:	2c c0       	rjmp	.+88     	; 0x5c <__bad_interrupt>
+   4:	2b c0       	rjmp	.+86     	; 0x5c <__bad_interrupt>
+   6:	2a c0       	rjmp	.+84     	; 0x5c <__bad_interrupt>
+   8:	29 c0       	rjmp	.+82     	; 0x5c <__bad_interrupt>
+   a:	28 c0       	rjmp	.+80     	; 0x5c <__bad_interrupt>
+   c:	27 c0       	rjmp	.+78     	; 0x5c <__bad_interrupt>
+   e:	26 c0       	rjmp	.+76     	; 0x5c <__bad_interrupt>
+  10:	25 c0       	rjmp	.+74     	; 0x5c <__bad_interrupt>
+  12:	24 c0       	rjmp	.+72     	; 0x5c <__bad_interrupt>
+  14:	23 c0       	rjmp	.+70     	; 0x5c <__bad_interrupt>
+  16:	22 c0       	rjmp	.+68     	; 0x5c <__bad_interrupt>
+  18:	21 c0       	rjmp	.+66     	; 0x5c <__bad_interrupt>
+  1a:	20 c0       	rjmp	.+64     	; 0x5c <__bad_interrupt>
+  1c:	1f c0       	rjmp	.+62     	; 0x5c <__bad_interrupt>
+  1e:	1e c0       	rjmp	.+60     	; 0x5c <__bad_interrupt>
+  20:	1d c0       	rjmp	.+58     	; 0x5c <__bad_interrupt>
+  22:	1c c0       	rjmp	.+56     	; 0x5c <__bad_interrupt>
+  24:	1b c0       	rjmp	.+54     	; 0x5c <__bad_interrupt>
+
+00000026 <__ctors_end>:
+  26:	11 24       	eor	r1, r1
+  28:	1f be       	out	0x3f, r1	; 63
+  2a:	cf e5       	ldi	r28, 0x5F	; 95
+  2c:	d4 e0       	ldi	r29, 0x04	; 4
+  2e:	de bf       	out	0x3e, r29	; 62
+  30:	cd bf       	out	0x3d, r28	; 61
+
+00000032 <__do_copy_data>:
+  32:	10 e0       	ldi	r17, 0x00	; 0
+  34:	a0 e6       	ldi	r26, 0x60	; 96
+  36:	b0 e0       	ldi	r27, 0x00	; 0
+  38:	e0 e9       	ldi	r30, 0x90	; 144
+  3a:	f3 e0       	ldi	r31, 0x03	; 3
+  3c:	02 c0       	rjmp	.+4      	; 0x42 <__SREG__+0x3>
+  3e:	05 90       	lpm	r0, Z+
+  40:	0d 92       	st	X+, r0
+  42:	a8 36       	cpi	r26, 0x68	; 104
+  44:	b1 07       	cpc	r27, r17
+  46:	d9 f7       	brne	.-10     	; 0x3e <__SP_H__>
+
+00000048 <__do_clear_bss>:
+  48:	20 e0       	ldi	r18, 0x00	; 0
+  4a:	a8 e6       	ldi	r26, 0x68	; 104
+  4c:	b0 e0       	ldi	r27, 0x00	; 0
+  4e:	01 c0       	rjmp	.+2      	; 0x52 <.do_clear_bss_start>
+
+00000050 <.do_clear_bss_loop>:
+  50:	1d 92       	st	X+, r1
+
+00000052 <.do_clear_bss_start>:
+  52:	a9 36       	cpi	r26, 0x69	; 105
+  54:	b2 07       	cpc	r27, r18
+  56:	e1 f7       	brne	.-8      	; 0x50 <.do_clear_bss_loop>
+  58:	15 d0       	rcall	.+42     	; 0x84 <main>
+  5a:	98 c1       	rjmp	.+816    	; 0x38c <_exit>
+
+0000005c <__bad_interrupt>:
+  5c:	d1 cf       	rjmp	.-94     	; 0x0 <__vectors>
+
+0000005e <BDC_TO_DC>:
+#define DS1307_ADDRESS 0xD1
+
+static inline void I2C_WaitForComplete(void) {while (!(TWCR & _BV(TWINT)));}
+
+uint8_t BDC_TO_DC(uint8_t hours){
+	return ((hours & 0b00110000) >> 4) * 10 + (hours & 0x0F);
+  5e:	28 2f       	mov	r18, r24
+  60:	20 73       	andi	r18, 0x30	; 48
+  62:	30 e0       	ldi	r19, 0x00	; 0
+  64:	35 95       	asr	r19
+  66:	27 95       	ror	r18
+  68:	35 95       	asr	r19
+  6a:	27 95       	ror	r18
+  6c:	35 95       	asr	r19
+  6e:	27 95       	ror	r18
+  70:	35 95       	asr	r19
+  72:	27 95       	ror	r18
+  74:	22 0f       	add	r18, r18
+  76:	92 2f       	mov	r25, r18
+  78:	99 0f       	add	r25, r25
+  7a:	99 0f       	add	r25, r25
+  7c:	29 0f       	add	r18, r25
+  7e:	8f 70       	andi	r24, 0x0F	; 15
+}
+  80:	82 0f       	add	r24, r18
+  82:	08 95       	ret
+
+00000084 <main>:
+
+int main(void)
+{
+  84:	cf 93       	push	r28
+  86:	df 93       	push	r29
+  88:	cd b7       	in	r28, 0x3d	; 61
+  8a:	de b7       	in	r29, 0x3e	; 62
+  8c:	28 97       	sbiw	r28, 0x08	; 8
+  8e:	0f b6       	in	r0, 0x3f	; 63
+  90:	f8 94       	cli
+  92:	de bf       	out	0x3e, r29	; 62
+  94:	0f be       	out	0x3f, r0	; 63
+  96:	cd bf       	out	0x3d, r28	; 61
+	
+	uint8_t thermometer_address[8] = {0x28, 0x39, 0xE0 ,0x76, 0xE0, 0x01, 0x3C, 0x00};
+  98:	88 e0       	ldi	r24, 0x08	; 8
+  9a:	e0 e6       	ldi	r30, 0x60	; 96
+  9c:	f0 e0       	ldi	r31, 0x00	; 0
+  9e:	de 01       	movw	r26, r28
+  a0:	11 96       	adiw	r26, 0x01	; 1
+  a2:	01 90       	ld	r0, Z+
+  a4:	0d 92       	st	X+, r0
+  a6:	8a 95       	dec	r24
+  a8:	e1 f7       	brne	.-8      	; 0xa2 <main+0x1e>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+  aa:	2f e3       	ldi	r18, 0x3F	; 63
+  ac:	8d e0       	ldi	r24, 0x0D	; 13
+  ae:	93 e0       	ldi	r25, 0x03	; 3
+  b0:	21 50       	subi	r18, 0x01	; 1
+  b2:	80 40       	sbci	r24, 0x00	; 0
+  b4:	90 40       	sbci	r25, 0x00	; 0
+  b6:	e1 f7       	brne	.-8      	; 0xb0 <main+0x2c>
+  b8:	00 c0       	rjmp	.+0      	; 0xba <main+0x36>
+  ba:	00 00       	nop
+	uint8_t temp_to_keep;
+	
+	_delay_ms(1000);
+	
+	// WYLACZ PRZEKAZNIK
+	DDRC |= 1 << 1;
+  bc:	84 b3       	in	r24, 0x14	; 20
+  be:	82 60       	ori	r24, 0x02	; 2
+  c0:	84 bb       	out	0x14, r24	; 20
+	PORTC &=  ~(0 << 1);
+  c2:	85 b3       	in	r24, 0x15	; 21
+  c4:	85 bb       	out	0x15, r24	; 21
+	
+	// REZYSTORY PODCIAGAJACE DLA I2C
+	PORTC |= 1 << 4;
+  c6:	85 b3       	in	r24, 0x15	; 21
+  c8:	80 61       	ori	r24, 0x10	; 16
+  ca:	85 bb       	out	0x15, r24	; 21
+	PORTC |= 1 << 5;
+  cc:	85 b3       	in	r24, 0x15	; 21
+  ce:	80 62       	ori	r24, 0x20	; 32
+  d0:	85 bb       	out	0x15, r24	; 21
+		#ifndef DEBUG_HOUR
+		
+		uint8_t hours;
+	
+		// W??CZENIE TWI
+		TWCR = _BV(TWEN);
+  d2:	84 e0       	ldi	r24, 0x04	; 4
+  d4:	86 bf       	out	0x36, r24	; 54
+		
+		// OKRE?LENIE PR?DKO?CI MAGISTRALI NA 50kHz
+		TWBR = 39;
+  d6:	87 e2       	ldi	r24, 0x27	; 39
+  d8:	80 b9       	out	0x00, r24	; 0
+		TWSR |= 1;
+  da:	81 b1       	in	r24, 0x01	; 1
+  dc:	81 60       	ori	r24, 0x01	; 1
+  de:	81 b9       	out	0x01, r24	; 1
+		
+		// SYGNA? START
+		TWCR = _BV(TWINT) | _BV(TWSTA) | _BV(TWEN);
+  e0:	84 ea       	ldi	r24, 0xA4	; 164
+  e2:	86 bf       	out	0x36, r24	; 54
+#define DAY_START 8
+
+#define DS1307_HOURS_REG 0x02
+#define DS1307_ADDRESS 0xD1
+
+static inline void I2C_WaitForComplete(void) {while (!(TWCR & _BV(TWINT)));}
+  e4:	06 b6       	in	r0, 0x36	; 54
+  e6:	07 fe       	sbrs	r0, 7
+  e8:	fd cf       	rjmp	.-6      	; 0xe4 <main+0x60>
+		TWCR = _BV(TWINT) | _BV(TWSTA) | _BV(TWEN);
+		I2C_WaitForComplete();
+		//print_byte(TW_STATUS); // 0b00010000
+		
+		// WYS?ANIE ADRESU URZ?DZENIA I BITU OZNACZAJ?CEGO ZAPIS
+		TWDR = DS1307_ADDRESS - 1;
+  ea:	80 ed       	ldi	r24, 0xD0	; 208
+  ec:	83 b9       	out	0x03, r24	; 3
+		TWCR = _BV(TWINT) | _BV(TWEN);
+  ee:	84 e8       	ldi	r24, 0x84	; 132
+  f0:	86 bf       	out	0x36, r24	; 54
+#define DAY_START 8
+
+#define DS1307_HOURS_REG 0x02
+#define DS1307_ADDRESS 0xD1
+
+static inline void I2C_WaitForComplete(void) {while (!(TWCR & _BV(TWINT)));}
+  f2:	06 b6       	in	r0, 0x36	; 54
+  f4:	07 fe       	sbrs	r0, 7
+  f6:	fd cf       	rjmp	.-6      	; 0xf2 <main+0x6e>
+		I2C_WaitForComplete();
+		//print_byte(TW_STATUS); // 0b00011000
+		
+		
+		// Wyslanie bajta wskazuj?cego na adres odczytu
+		TWDR = 0x02;
+  f8:	82 e0       	ldi	r24, 0x02	; 2
+  fa:	83 b9       	out	0x03, r24	; 3
+		TWCR = _BV(TWINT) | _BV(TWEN);
+  fc:	84 e8       	ldi	r24, 0x84	; 132
+  fe:	86 bf       	out	0x36, r24	; 54
+#define DAY_START 8
+
+#define DS1307_HOURS_REG 0x02
+#define DS1307_ADDRESS 0xD1
+
+static inline void I2C_WaitForComplete(void) {while (!(TWCR & _BV(TWINT)));}
+ 100:	06 b6       	in	r0, 0x36	; 54
+ 102:	07 fe       	sbrs	r0, 7
+ 104:	fd cf       	rjmp	.-6      	; 0x100 <main+0x7c>
+		TWCR = _BV(TWINT) | _BV(TWEN);
+		I2C_WaitForComplete();
+		//print_byte(TW_STATUS); // 0b00010100
+		
+		// Wyslanie powtórzonego startu
+		TWCR = _BV(TWSTA) | _BV(TWINT) | _BV(TWEN);
+ 106:	84 ea       	ldi	r24, 0xA4	; 164
+ 108:	86 bf       	out	0x36, r24	; 54
+#define DAY_START 8
+
+#define DS1307_HOURS_REG 0x02
+#define DS1307_ADDRESS 0xD1
+
+static inline void I2C_WaitForComplete(void) {while (!(TWCR & _BV(TWINT)));}
+ 10a:	06 b6       	in	r0, 0x36	; 54
+ 10c:	07 fe       	sbrs	r0, 7
+ 10e:	fd cf       	rjmp	.-6      	; 0x10a <main+0x86>
+		TWCR = _BV(TWSTA) | _BV(TWINT) | _BV(TWEN);
+		I2C_WaitForComplete();
+		//print_byte(TW_STATUS); // 0b00001000
+		
+		// wyslanie SLA+R
+		TWDR = DS1307_ADDRESS;
+ 110:	81 ed       	ldi	r24, 0xD1	; 209
+ 112:	83 b9       	out	0x03, r24	; 3
+		TWCR = _BV(TWEN) | _BV(TWINT);
+ 114:	84 e8       	ldi	r24, 0x84	; 132
+ 116:	86 bf       	out	0x36, r24	; 54
+#define DAY_START 8
+
+#define DS1307_HOURS_REG 0x02
+#define DS1307_ADDRESS 0xD1
+
+static inline void I2C_WaitForComplete(void) {while (!(TWCR & _BV(TWINT)));}
+ 118:	06 b6       	in	r0, 0x36	; 54
+ 11a:	07 fe       	sbrs	r0, 7
+ 11c:	fd cf       	rjmp	.-6      	; 0x118 <main+0x94>
+		TWCR = _BV(TWEN) | _BV(TWINT);
+		I2C_WaitForComplete();
+		//print_byte(TW_STATUS); // 0b00000010
+		
+		// odczytanie bajtu, odes?anie NACK
+		TWCR = _BV(TWEN) | _BV(TWINT);
+ 11e:	84 e8       	ldi	r24, 0x84	; 132
+ 120:	86 bf       	out	0x36, r24	; 54
+#define DAY_START 8
+
+#define DS1307_HOURS_REG 0x02
+#define DS1307_ADDRESS 0xD1
+
+static inline void I2C_WaitForComplete(void) {while (!(TWCR & _BV(TWINT)));}
+ 122:	06 b6       	in	r0, 0x36	; 54
+ 124:	07 fe       	sbrs	r0, 7
+ 126:	fd cf       	rjmp	.-6      	; 0x122 <main+0x9e>
+		//print_byte(TW_STATUS); // 0b00000010
+		
+		// odczytanie bajtu, odes?anie NACK
+		TWCR = _BV(TWEN) | _BV(TWINT);
+		I2C_WaitForComplete();
+		hours = TWDR;
+ 128:	83 b1       	in	r24, 0x03	; 3
+		//print_byte(TW_STATUS); // 0b00011010
+		
+		// wyslanie stop
+		TWCR = _BV(TWINT) | _BV(TWEN) | _BV(TWSTO);
+ 12a:	94 e9       	ldi	r25, 0x94	; 148
+ 12c:	96 bf       	out	0x36, r25	; 54
+		while (TWCR & _BV(TWSTO));
+ 12e:	06 b6       	in	r0, 0x36	; 54
+ 130:	04 fc       	sbrc	r0, 4
+ 132:	fd cf       	rjmp	.-6      	; 0x12e <main+0xaa>
+		
+		
+		hours = BDC_TO_DC(hours);
+ 134:	94 df       	rcall	.-216    	; 0x5e <BDC_TO_DC>
+		if (hours >= NIGHT_START || hours < DAY_START) temp_to_keep = NIGHT_TEMP;
+ 136:	88 50       	subi	r24, 0x08	; 8
+ 138:	8e 30       	cpi	r24, 0x0E	; 14
+ 13a:	10 f0       	brcs	.+4      	; 0x140 <main+0xbc>
+ 13c:	19 e1       	ldi	r17, 0x19	; 25
+ 13e:	01 c0       	rjmp	.+2      	; 0x142 <main+0xbe>
+		else temp_to_keep = DAY_TEMP;
+ 140:	1d e1       	ldi	r17, 0x1D	; 29
+	
+		OW_Start_Conversion(1);
+ 142:	81 e0       	ldi	r24, 0x01	; 1
+ 144:	f6 d0       	rcall	.+492    	; 0x332 <OW_Start_Conversion>
+		int16_t temp = (OW_GetTemperature(thermometer_address) >> 2); // 2 LSB are not defined due to resolution, hence the bit move
+ 146:	ce 01       	movw	r24, r28
+ 148:	01 96       	adiw	r24, 0x01	; 1
+ 14a:	03 d1       	rcall	.+518    	; 0x352 <OW_GetTemperature>
+ 14c:	95 95       	asr	r25
+ 14e:	87 95       	ror	r24
+ 150:	95 95       	asr	r25
+ 152:	87 95       	ror	r24
+	
+		if (temp < ((temp_to_keep - 1) << 2) + 3) {
+ 154:	21 2f       	mov	r18, r17
+ 156:	30 e0       	ldi	r19, 0x00	; 0
+ 158:	a9 01       	movw	r20, r18
+ 15a:	41 50       	subi	r20, 0x01	; 1
+ 15c:	51 09       	sbc	r21, r1
+ 15e:	44 0f       	add	r20, r20
+ 160:	55 1f       	adc	r21, r21
+ 162:	44 0f       	add	r20, r20
+ 164:	55 1f       	adc	r21, r21
+ 166:	4d 5f       	subi	r20, 0xFD	; 253
+ 168:	5f 4f       	sbci	r21, 0xFF	; 255
+ 16a:	84 17       	cp	r24, r20
+ 16c:	95 07       	cpc	r25, r21
+ 16e:	3c f4       	brge	.+14     	; 0x17e <main+0xfa>
+			PORTC |= 1 << 1;
+ 170:	85 b3       	in	r24, 0x15	; 21
+ 172:	82 60       	ori	r24, 0x02	; 2
+ 174:	85 bb       	out	0x15, r24	; 21
+			PORTC |= 1 << 3;
+ 176:	85 b3       	in	r24, 0x15	; 21
+ 178:	88 60       	ori	r24, 0x08	; 8
+ 17a:	85 bb       	out	0x15, r24	; 21
+ 17c:	0f c0       	rjmp	.+30     	; 0x19c <main+0x118>
+		} else if (temp > ((temp_to_keep << 2) + 1)){
+ 17e:	22 0f       	add	r18, r18
+ 180:	33 1f       	adc	r19, r19
+ 182:	22 0f       	add	r18, r18
+ 184:	33 1f       	adc	r19, r19
+ 186:	2f 5f       	subi	r18, 0xFF	; 255
+ 188:	3f 4f       	sbci	r19, 0xFF	; 255
+ 18a:	28 17       	cp	r18, r24
+ 18c:	39 07       	cpc	r19, r25
+ 18e:	34 f4       	brge	.+12     	; 0x19c <main+0x118>
+			PORTC &= ~(1 << 1);
+ 190:	85 b3       	in	r24, 0x15	; 21
+ 192:	8d 7f       	andi	r24, 0xFD	; 253
+ 194:	85 bb       	out	0x15, r24	; 21
+			PORTC &= ~(1 << 3);
+ 196:	85 b3       	in	r24, 0x15	; 21
+ 198:	87 7f       	andi	r24, 0xF7	; 247
+ 19a:	85 bb       	out	0x15, r24	; 21
+ 19c:	2f e9       	ldi	r18, 0x9F	; 159
+ 19e:	86 e8       	ldi	r24, 0x86	; 134
+ 1a0:	91 e0       	ldi	r25, 0x01	; 1
+ 1a2:	21 50       	subi	r18, 0x01	; 1
+ 1a4:	80 40       	sbci	r24, 0x00	; 0
+ 1a6:	90 40       	sbci	r25, 0x00	; 0
+ 1a8:	e1 f7       	brne	.-8      	; 0x1a2 <main+0x11e>
+ 1aa:	00 c0       	rjmp	.+0      	; 0x1ac <main+0x128>
+ 1ac:	00 00       	nop
+ 1ae:	91 cf       	rjmp	.-222    	; 0xd2 <main+0x4e>
+
+000001b0 <OW_Write>:
+#include <util\crc16.h>
+#include "1wire_basic.h"
+#include "1wire.h"
+
+void OW_Write(uint8_t byte)
+{
+ 1b0:	cf 93       	push	r28
+ 1b2:	df 93       	push	r29
+ 1b4:	d8 2f       	mov	r29, r24
+	unsigned char loop;
+	for(loop=0; loop<8; loop++)
+ 1b6:	c0 e0       	ldi	r28, 0x00	; 0
+ 1b8:	09 c0       	rjmp	.+18     	; 0x1cc <OW_Write+0x1c>
+	{
+		OW_SendBit(byte & 0x01);
+ 1ba:	8d 2f       	mov	r24, r29
+ 1bc:	81 70       	andi	r24, 0x01	; 1
+ 1be:	44 d0       	rcall	.+136    	; 0x248 <OW_SendBit>
+		byte>>=1;
+ 1c0:	d6 95       	lsr	r29
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 1c2:	8b e2       	ldi	r24, 0x2B	; 43
+ 1c4:	8a 95       	dec	r24
+ 1c6:	f1 f7       	brne	.-4      	; 0x1c4 <OW_Write+0x14>
+ 1c8:	00 00       	nop
+#include "1wire.h"
+
+void OW_Write(uint8_t byte)
+{
+	unsigned char loop;
+	for(loop=0; loop<8; loop++)
+ 1ca:	cf 5f       	subi	r28, 0xFF	; 255
+ 1cc:	c8 30       	cpi	r28, 0x08	; 8
+ 1ce:	a8 f3       	brcs	.-22     	; 0x1ba <OW_Write+0xa>
+	{
+		OW_SendBit(byte & 0x01);
+		byte>>=1;
+   		_delay_us(130);
+    }
+}
+ 1d0:	df 91       	pop	r29
+ 1d2:	cf 91       	pop	r28
+ 1d4:	08 95       	ret
+
+000001d6 <OW_Read>:
+
+uint8_t OW_Read()
+{
+ 1d6:	cf 93       	push	r28
+ 1d8:	df 93       	push	r29
+	unsigned char loop;
+	unsigned char result=0;
+ 1da:	d0 e0       	ldi	r29, 0x00	; 0
+
+	for(loop=0; loop<8; loop++)
+ 1dc:	c0 e0       	ldi	r28, 0x00	; 0
+ 1de:	08 c0       	rjmp	.+16     	; 0x1f0 <OW_Read+0x1a>
+	{
+		result>>=1;
+ 1e0:	d6 95       	lsr	r29
+		if(OW_ReadBit()) result|=0x80;
+ 1e2:	4b d0       	rcall	.+150    	; 0x27a <OW_ReadBit>
+ 1e4:	81 11       	cpse	r24, r1
+ 1e6:	d0 68       	ori	r29, 0x80	; 128
+ 1e8:	82 e3       	ldi	r24, 0x32	; 50
+ 1ea:	8a 95       	dec	r24
+ 1ec:	f1 f7       	brne	.-4      	; 0x1ea <OW_Read+0x14>
+uint8_t OW_Read()
+{
+	unsigned char loop;
+	unsigned char result=0;
+
+	for(loop=0; loop<8; loop++)
+ 1ee:	cf 5f       	subi	r28, 0xFF	; 255
+ 1f0:	c8 30       	cpi	r28, 0x08	; 8
+ 1f2:	b0 f3       	brcs	.-20     	; 0x1e0 <OW_Read+0xa>
+		result>>=1;
+		if(OW_ReadBit()) result|=0x80;
+   		_delay_us(150);
+  	} 
+ 	return result;
+}
+ 1f4:	8d 2f       	mov	r24, r29
+ 1f6:	df 91       	pop	r29
+ 1f8:	cf 91       	pop	r28
+ 1fa:	08 95       	ret
+
+000001fc <OW_SelectDevice>:
+
+void OW_SelectDevice(const uint8_t *aID)
+{
+ 1fc:	0f 93       	push	r16
+ 1fe:	1f 93       	push	r17
+ 200:	cf 93       	push	r28
+ 202:	df 93       	push	r29
+ 204:	8c 01       	movw	r16, r24
+	if(OW_WaitForPresencePulse()==false) return;
+ 206:	6a d0       	rcall	.+212    	; 0x2dc <OW_WaitForPresencePulse>
+ 208:	88 23       	and	r24, r24
+ 20a:	c9 f0       	breq	.+50     	; 0x23e <__EEPROM_REGION_LENGTH__+0x3e>
+	OW_Write(OW_MatchROM);
+ 20c:	85 e5       	ldi	r24, 0x55	; 85
+ 20e:	d0 df       	rcall	.-96     	; 0x1b0 <OW_Write>
+	uint8_t crc=0;
+	for(uint8_t a=0;a<7;a++)
+ 210:	d0 e0       	ldi	r29, 0x00	; 0
+
+void OW_SelectDevice(const uint8_t *aID)
+{
+	if(OW_WaitForPresencePulse()==false) return;
+	OW_Write(OW_MatchROM);
+	uint8_t crc=0;
+ 212:	c0 e0       	ldi	r28, 0x00	; 0
+	for(uint8_t a=0;a<7;a++)
+ 214:	10 c0       	rjmp	.+32     	; 0x236 <__EEPROM_REGION_LENGTH__+0x36>
+	{
+	 crc=_crc_ibutton_update(crc, aID[a]);
+ 216:	f8 01       	movw	r30, r16
+ 218:	ed 0f       	add	r30, r29
+ 21a:	f1 1d       	adc	r31, r1
+ 21c:	80 81       	ld	r24, Z
+
+static __inline__ uint8_t
+_crc_ibutton_update(uint8_t __crc, uint8_t __data)
+{
+	uint8_t __i, __pattern;
+	__asm__ __volatile__ (
+ 21e:	9c 2f       	mov	r25, r28
+ 220:	98 27       	eor	r25, r24
+ 222:	28 e0       	ldi	r18, 0x08	; 8
+ 224:	3c e8       	ldi	r19, 0x8C	; 140
+ 226:	96 95       	lsr	r25
+ 228:	08 f4       	brcc	.+2      	; 0x22c <__EEPROM_REGION_LENGTH__+0x2c>
+ 22a:	93 27       	eor	r25, r19
+ 22c:	2a 95       	dec	r18
+ 22e:	d9 f7       	brne	.-10     	; 0x226 <__EEPROM_REGION_LENGTH__+0x26>
+ 230:	c9 2f       	mov	r28, r25
+	 OW_Write(aID[a]);
+ 232:	be df       	rcall	.-132    	; 0x1b0 <OW_Write>
+void OW_SelectDevice(const uint8_t *aID)
+{
+	if(OW_WaitForPresencePulse()==false) return;
+	OW_Write(OW_MatchROM);
+	uint8_t crc=0;
+	for(uint8_t a=0;a<7;a++)
+ 234:	df 5f       	subi	r29, 0xFF	; 255
+ 236:	d7 30       	cpi	r29, 0x07	; 7
+ 238:	70 f3       	brcs	.-36     	; 0x216 <__EEPROM_REGION_LENGTH__+0x16>
+	{
+	 crc=_crc_ibutton_update(crc, aID[a]);
+	 OW_Write(aID[a]);
+	}
+	OW_Write(crc);
+ 23a:	8c 2f       	mov	r24, r28
+ 23c:	b9 df       	rcall	.-142    	; 0x1b0 <OW_Write>
+}
+ 23e:	df 91       	pop	r29
+ 240:	cf 91       	pop	r28
+ 242:	1f 91       	pop	r17
+ 244:	0f 91       	pop	r16
+ 246:	08 95       	ret
+
+00000248 <OW_SendBit>:
+
+uint8_t Error;
+
+void OW_SendBit(bool bit)
+{
+	ATOMIC_BLOCK(ATOMIC_RESTORESTATE)
+ 248:	2f b7       	in	r18, 0x3f	; 63
+    return 1;
+}
+
+static __inline__ uint8_t __iCliRetVal(void)
+{
+    cli();
+ 24a:	f8 94       	cli
+ 24c:	91 e0       	ldi	r25, 0x01	; 1
+ 24e:	11 c0       	rjmp	.+34     	; 0x272 <OW_SendBit+0x2a>
+	{
+		SET(DDR, OW_PIN);
+ 250:	97 b3       	in	r25, 0x17	; 23
+ 252:	94 60       	ori	r25, 0x04	; 4
+ 254:	97 bb       	out	0x17, r25	; 23
+ 256:	00 c0       	rjmp	.+0      	; 0x258 <OW_SendBit+0x10>
+ 258:	00 00       	nop
+ 		_delay_us(3);
+ 		if(bit) CLR(DDR, OW_PIN);
+ 25a:	88 23       	and	r24, r24
+ 25c:	19 f0       	breq	.+6      	; 0x264 <OW_SendBit+0x1c>
+ 25e:	97 b3       	in	r25, 0x17	; 23
+ 260:	9b 7f       	andi	r25, 0xFB	; 251
+ 262:	97 bb       	out	0x17, r25	; 23
+ 264:	94 e1       	ldi	r25, 0x14	; 20
+ 266:	9a 95       	dec	r25
+ 268:	f1 f7       	brne	.-4      	; 0x266 <OW_SendBit+0x1e>
+ 		_delay_us(60);
+		CLR(DDR, OW_PIN);
+ 26a:	97 b3       	in	r25, 0x17	; 23
+ 26c:	9b 7f       	andi	r25, 0xFB	; 251
+ 26e:	97 bb       	out	0x17, r25	; 23
+
+uint8_t Error;
+
+void OW_SendBit(bool bit)
+{
+	ATOMIC_BLOCK(ATOMIC_RESTORESTATE)
+ 270:	90 e0       	ldi	r25, 0x00	; 0
+ 272:	91 11       	cpse	r25, r1
+ 274:	ed cf       	rjmp	.-38     	; 0x250 <OW_SendBit+0x8>
+    (void)__s;
+}
+
+static __inline__ void __iRestore(const  uint8_t *__s)
+{
+    SREG = *__s;
+ 276:	2f bf       	out	0x3f, r18	; 63
+    __asm__ volatile ("" ::: "memory");
+ 278:	08 95       	ret
+
+0000027a <OW_ReadBit>:
+
+bool OW_ReadBit()
+{
+	unsigned char tmp;
+	unsigned char counter=0;
+	ATOMIC_BLOCK(ATOMIC_RESTORESTATE)
+ 27a:	2f b7       	in	r18, 0x3f	; 63
+    return 1;
+}
+
+static __inline__ uint8_t __iCliRetVal(void)
+{
+    cli();
+ 27c:	f8 94       	cli
+ 27e:	81 e0       	ldi	r24, 0x01	; 1
+ 280:	0f c0       	rjmp	.+30     	; 0x2a0 <OW_ReadBit+0x26>
+	{
+ 		SET(DDR, OW_PIN);
+ 282:	87 b3       	in	r24, 0x17	; 23
+ 284:	84 60       	ori	r24, 0x04	; 4
+ 286:	87 bb       	out	0x17, r24	; 23
+ 288:	00 c0       	rjmp	.+0      	; 0x28a <OW_ReadBit+0x10>
+ 28a:	00 00       	nop
+		_delay_us(3);
+		CLR(DDR, OW_PIN);
+ 28c:	87 b3       	in	r24, 0x17	; 23
+ 28e:	8b 7f       	andi	r24, 0xFB	; 251
+ 290:	87 bb       	out	0x17, r24	; 23
+ 292:	85 e0       	ldi	r24, 0x05	; 5
+ 294:	8a 95       	dec	r24
+ 296:	f1 f7       	brne	.-4      	; 0x294 <OW_ReadBit+0x1a>
+ 		_delay_us(15);
+ 		tmp=GET(OW_PIN);
+ 298:	86 b3       	in	r24, 0x16	; 22
+ 29a:	98 2f       	mov	r25, r24
+ 29c:	94 70       	andi	r25, 0x04	; 4
+
+bool OW_ReadBit()
+{
+	unsigned char tmp;
+	unsigned char counter=0;
+	ATOMIC_BLOCK(ATOMIC_RESTORESTATE)
+ 29e:	80 e0       	ldi	r24, 0x00	; 0
+ 2a0:	81 11       	cpse	r24, r1
+ 2a2:	ef cf       	rjmp	.-34     	; 0x282 <OW_ReadBit+0x8>
+    (void)__s;
+}
+
+static __inline__ void __iRestore(const  uint8_t *__s)
+{
+    SREG = *__s;
+ 2a4:	2f bf       	out	0x3f, r18	; 63
+		_delay_us(3);
+		CLR(DDR, OW_PIN);
+ 		_delay_us(15);
+ 		tmp=GET(OW_PIN);
+	}
+ 	while((counter<0xFF) && (GET(OW_PIN)==0))
+ 2a6:	02 c0       	rjmp	.+4      	; 0x2ac <OW_ReadBit+0x32>
+ 2a8:	00 c0       	rjmp	.+0      	; 0x2aa <OW_ReadBit+0x30>
+  	 {
+   		_delay_us(2);
+   		counter++;
+ 2aa:	8f 5f       	subi	r24, 0xFF	; 255
+		_delay_us(3);
+		CLR(DDR, OW_PIN);
+ 		_delay_us(15);
+ 		tmp=GET(OW_PIN);
+	}
+ 	while((counter<0xFF) && (GET(OW_PIN)==0))
+ 2ac:	8f 3f       	cpi	r24, 0xFF	; 255
+ 2ae:	11 f0       	breq	.+4      	; 0x2b4 <OW_ReadBit+0x3a>
+ 2b0:	b2 9b       	sbis	0x16, 2	; 22
+ 2b2:	fa cf       	rjmp	.-12     	; 0x2a8 <OW_ReadBit+0x2e>
+  	 {
+   		_delay_us(2);
+   		counter++;
+  	 }
+	if(counter==0xFF) Error=OW_BusShorted;
+ 2b4:	8f 3f       	cpi	r24, 0xFF	; 255
+ 2b6:	19 f4       	brne	.+6      	; 0x2be <OW_ReadBit+0x44>
+ 2b8:	81 e0       	ldi	r24, 0x01	; 1
+ 2ba:	80 93 68 00 	sts	0x0068, r24	; 0x800068 <__data_end>
+ 	return tmp;
+ 2be:	81 e0       	ldi	r24, 0x01	; 1
+ 2c0:	91 11       	cpse	r25, r1
+ 2c2:	01 c0       	rjmp	.+2      	; 0x2c6 <OW_ReadBit+0x4c>
+ 2c4:	80 e0       	ldi	r24, 0x00	; 0
+}
+ 2c6:	08 95       	ret
+
+000002c8 <OW_ResetPulse>:
+
+void OW_ResetPulse()
+{
+	SET(DDR, OW_PIN);
+ 2c8:	87 b3       	in	r24, 0x17	; 23
+ 2ca:	84 60       	ori	r24, 0x04	; 4
+ 2cc:	87 bb       	out	0x17, r24	; 23
+ 2ce:	80 ea       	ldi	r24, 0xA0	; 160
+ 2d0:	8a 95       	dec	r24
+ 2d2:	f1 f7       	brne	.-4      	; 0x2d0 <OW_ResetPulse+0x8>
+	_delay_us(480);
+	CLR(DDR, OW_PIN);
+ 2d4:	87 b3       	in	r24, 0x17	; 23
+ 2d6:	8b 7f       	andi	r24, 0xFB	; 251
+ 2d8:	87 bb       	out	0x17, r24	; 23
+ 2da:	08 95       	ret
+
+000002dc <OW_WaitForPresencePulse>:
+}
+
+bool OW_WaitForPresencePulse()
+{
+ 2dc:	cf 93       	push	r28
+ ATOMIC_BLOCK(ATOMIC_RESTORESTATE)
+ 2de:	cf b7       	in	r28, 0x3f	; 63
+    return 1;
+}
+
+static __inline__ uint8_t __iCliRetVal(void)
+{
+    cli();
+ 2e0:	f8 94       	cli
+  {
+	OW_ResetPulse();
+ 2e2:	f2 df       	rcall	.-28     	; 0x2c8 <OW_ResetPulse>
+ 2e4:	8a e0       	ldi	r24, 0x0A	; 10
+ 2e6:	8a 95       	dec	r24
+ 2e8:	f1 f7       	brne	.-4      	; 0x2e6 <OW_WaitForPresencePulse+0xa>
+	_delay_us(30);
+	unsigned char counter=0;
+ 2ea:	80 e0       	ldi	r24, 0x00	; 0
+	while((counter<0xFF) && (GET(OW_PIN)))
+ 2ec:	02 c0       	rjmp	.+4      	; 0x2f2 <OW_WaitForPresencePulse+0x16>
+ 2ee:	00 00       	nop
+  	 {
+   		_delay_us(1);
+   		counter++;
+ 2f0:	8f 5f       	subi	r24, 0xFF	; 255
+ ATOMIC_BLOCK(ATOMIC_RESTORESTATE)
+  {
+	OW_ResetPulse();
+	_delay_us(30);
+	unsigned char counter=0;
+	while((counter<0xFF) && (GET(OW_PIN)))
+ 2f2:	8f 3f       	cpi	r24, 0xFF	; 255
+ 2f4:	11 f0       	breq	.+4      	; 0x2fa <OW_WaitForPresencePulse+0x1e>
+ 2f6:	b2 99       	sbic	0x16, 2	; 22
+ 2f8:	fa cf       	rjmp	.-12     	; 0x2ee <OW_WaitForPresencePulse+0x12>
+  	 {
+   		_delay_us(1);
+   		counter++;
+  	 }
+ 	if(counter==0xFF)
+ 2fa:	8f 3f       	cpi	r24, 0xFF	; 255
+ 2fc:	41 f4       	brne	.+16     	; 0x30e <OW_WaitForPresencePulse+0x32>
+	 {
+	 	Error=OW_NoPresencePulse;
+ 2fe:	82 e0       	ldi	r24, 0x02	; 2
+ 300:	80 93 68 00 	sts	0x0068, r24	; 0x800068 <__data_end>
+	 	return false;
+ 304:	80 e0       	ldi	r24, 0x00	; 0
+ 306:	12 c0       	rjmp	.+36     	; 0x32c <OW_WaitForPresencePulse+0x50>
+ 308:	00 c0       	rjmp	.+0      	; 0x30a <OW_WaitForPresencePulse+0x2e>
+	 }
+ 	counter=0;
+ 	while((counter<0xFF) && (GET(OW_PIN)==0))
+  	 {
+   		_delay_us(2);
+   		counter++;
+ 30a:	8f 5f       	subi	r24, 0xFF	; 255
+ 30c:	01 c0       	rjmp	.+2      	; 0x310 <OW_WaitForPresencePulse+0x34>
+ 30e:	80 e0       	ldi	r24, 0x00	; 0
+	 {
+	 	Error=OW_NoPresencePulse;
+	 	return false;
+	 }
+ 	counter=0;
+ 	while((counter<0xFF) && (GET(OW_PIN)==0))
+ 310:	8f 3f       	cpi	r24, 0xFF	; 255
+ 312:	11 f0       	breq	.+4      	; 0x318 <OW_WaitForPresencePulse+0x3c>
+ 314:	b2 9b       	sbis	0x16, 2	; 22
+ 316:	f8 cf       	rjmp	.-16     	; 0x308 <OW_WaitForPresencePulse+0x2c>
+  	 {
+   		_delay_us(2);
+   		counter++;
+  	 }
+ 	if(counter==0xFF)
+ 318:	8f 3f       	cpi	r24, 0xFF	; 255
+ 31a:	29 f4       	brne	.+10     	; 0x326 <OW_WaitForPresencePulse+0x4a>
+	 {
+		Error=OW_BusShorted;
+ 31c:	81 e0       	ldi	r24, 0x01	; 1
+ 31e:	80 93 68 00 	sts	0x0068, r24	; 0x800068 <__data_end>
+	 	return false;
+ 322:	80 e0       	ldi	r24, 0x00	; 0
+ 324:	03 c0       	rjmp	.+6      	; 0x32c <OW_WaitForPresencePulse+0x50>
+	 }
+	Error=OW_OK;
+ 326:	10 92 68 00 	sts	0x0068, r1	; 0x800068 <__data_end>
+ 	return true;
+ 32a:	81 e0       	ldi	r24, 0x01	; 1
+    (void)__s;
+}
+
+static __inline__ void __iRestore(const  uint8_t *__s)
+{
+    SREG = *__s;
+ 32c:	cf bf       	out	0x3f, r28	; 63
+  }
+}
+ 32e:	cf 91       	pop	r28
+ 330:	08 95       	ret
+
+00000332 <OW_Start_Conversion>:
+#include "DS18B20.h"
+#include "1wire_basic.h"
+#include "1wire.h"
+
+void OW_Start_Conversion(uint8_t block)
+{
+ 332:	cf 93       	push	r28
+ 334:	c8 2f       	mov	r28, r24
+ if(OW_WaitForPresencePulse()==0) return;
+ 336:	d2 df       	rcall	.-92     	; 0x2dc <OW_WaitForPresencePulse>
+ 338:	88 23       	and	r24, r24
+ 33a:	49 f0       	breq	.+18     	; 0x34e <OW_Start_Conversion+0x1c>
+ OW_Write(OW_SkipROM);
+ 33c:	8c ec       	ldi	r24, 0xCC	; 204
+ 33e:	38 df       	rcall	.-400    	; 0x1b0 <OW_Write>
+ OW_Write(OW_CONVERT);
+ 340:	84 e4       	ldi	r24, 0x44	; 68
+ 342:	36 df       	rcall	.-404    	; 0x1b0 <OW_Write>
+ if(block) while(!OW_ReadBit());
+ 344:	cc 23       	and	r28, r28
+ 346:	19 f0       	breq	.+6      	; 0x34e <OW_Start_Conversion+0x1c>
+ 348:	98 df       	rcall	.-208    	; 0x27a <OW_ReadBit>
+ 34a:	88 23       	and	r24, r24
+ 34c:	e9 f3       	breq	.-6      	; 0x348 <OW_Start_Conversion+0x16>
+}
+ 34e:	cf 91       	pop	r28
+ 350:	08 95       	ret
+
+00000352 <OW_GetTemperature>:
+
+int16_t OW_GetTemperature(uint8_t *aID)
+{
+ 352:	cf 93       	push	r28
+ 354:	df 93       	push	r29
+ OW_SelectDevice(aID);
+ 356:	52 df       	rcall	.-348    	; 0x1fc <OW_SelectDevice>
+ if(Error!=OW_OK) return 0xFFFF;
+ 358:	80 91 68 00 	lds	r24, 0x0068	; 0x800068 <__data_end>
+ 35c:	81 11       	cpse	r24, r1
+ 35e:	11 c0       	rjmp	.+34     	; 0x382 <OW_GetTemperature+0x30>
+
+ OW_Write(OW_READ_SCRATCHPAD);
+ 360:	8e eb       	ldi	r24, 0xBE	; 190
+ 362:	26 df       	rcall	.-436    	; 0x1b0 <OW_Write>
+ uint16_t temp=OW_Read();
+ 364:	38 df       	rcall	.-400    	; 0x1d6 <OW_Read>
+ 366:	c8 2f       	mov	r28, r24
+ 368:	d0 e0       	ldi	r29, 0x00	; 0
+ temp=temp+(OW_Read()<<8);
+ 36a:	35 df       	rcall	.-406    	; 0x1d6 <OW_Read>
+ 36c:	20 e0       	ldi	r18, 0x00	; 0
+ 36e:	38 2f       	mov	r19, r24
+ 370:	2c 0f       	add	r18, r28
+ 372:	3d 1f       	adc	r19, r29
+ if(temp & 0x8000) temp=1-(temp ^ 0xFFFF); //Konwersja kodów
+ 374:	33 23       	and	r19, r19
+ 376:	14 f4       	brge	.+4      	; 0x37c <OW_GetTemperature+0x2a>
+ 378:	2e 5f       	subi	r18, 0xFE	; 254
+ 37a:	3f 4f       	sbci	r19, 0xFF	; 255
+ return temp;
+ 37c:	82 2f       	mov	r24, r18
+ 37e:	93 2f       	mov	r25, r19
+ 380:	02 c0       	rjmp	.+4      	; 0x386 <OW_GetTemperature+0x34>
+}
+
+int16_t OW_GetTemperature(uint8_t *aID)
+{
+ OW_SelectDevice(aID);
+ if(Error!=OW_OK) return 0xFFFF;
+ 382:	8f ef       	ldi	r24, 0xFF	; 255
+ 384:	9f ef       	ldi	r25, 0xFF	; 255
+ OW_Write(OW_READ_SCRATCHPAD);
+ uint16_t temp=OW_Read();
+ temp=temp+(OW_Read()<<8);
+ if(temp & 0x8000) temp=1-(temp ^ 0xFFFF); //Konwersja kodów
+ return temp;
+}
+ 386:	df 91       	pop	r29
+ 388:	cf 91       	pop	r28
+ 38a:	08 95       	ret
+
+0000038c <_exit>:
+ 38c:	f8 94       	cli
+
+0000038e <__stop_program>:
+ 38e:	ff cf       	rjmp	.-2      	; 0x38e <__stop_program>
